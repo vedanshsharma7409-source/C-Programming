@@ -1,0 +1,137 @@
+
+// Q. What do you mean by arrays give one example of array and how you can declared an array?
+
+// Arrays are collections of elements of the same data type stored in contiguous memory locations 
+int  main(){
+    //Array declaration
+    int numbers[] = {1, 2, 3, 4, 5};
+    printf("Array elements:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", numbers[i]);
+    }
+    return 0;
+}
+//Output 
+// Array elemnets:
+// 1 2 3 4 5
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Q. What do you mean by functions? Write the types of functions and give one example in code of each type.
+#include <stdio.h>
+
+// a) Function with no return value
+void greet() {
+    printf("Hello from greet function!\n");
+}
+
+// b) Function with return value
+int multiply() {
+    return 4 * 8;
+}
+
+int main() {
+    // Calling the functions
+    greet();
+    printf("Multiplication result: %d\n", multiply());
+
+    return 0;
+}
+// Output
+// Hello from greet function
+// 32
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Q. What do you mean by Pointers ? Write a code how you can initialise the pointer.
+
+// Pointers are variables that store the address of another variable.
+int main() {
+    int p = 10;
+    int *ptr = &p; // Initializing pointer
+    printf("Value of p: %d\n", p);
+    printf("Address of p in ptr: %p\n",ptr);
+    printf("Value stored in pointer ptr: %d\n",*ptr);
+    return 0;
+}
+// Output 
+// Value of p: 10
+// Address of p in ptr: 0061FF18
+// Value stored in pointer ptr: 10
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ // Q. What are the types of array? Write in a code 1D & 2D included.
+
+//  Types of Arrays
+int main() {
+    // 1D Array
+    int oneD[3] = {10, 20, 30};
+    printf("1D Array:\n");
+    for (int i = 0; i < 3; i++) {
+        printf("%d ", oneD[i]);
+    }
+    printf("\n");
+
+    // 2D Array
+    int twoD[2][2] = {{1, 2}, {3, 4}};
+    printf("2D Array:\n");
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            printf("%d ", twoD[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+// Output 
+// 1D Array:
+// 10 20 30 
+// 2D Array:
+// 1 2
+// 3 4
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Q. Explain the types of Operators in code.
+#include <stdio.h>
+
+int main() {
+    int a = 10, b = 3, x = 5;
+
+    // Arithmetic Operators
+    printf("a + b = %d\n", a + b);
+    printf("a - b = %d\n", a - b);
+    printf("a * b = %d\n", a * b);
+    printf("a / b = %d\n", a / b);
+
+    // Relational Operators
+    printf("a == b = %d\n", a == b);
+    printf("a != b = %d\n", a != b);
+    printf("a > b = %d\n", a > b);
+    printf("a < b = %d\n", a < b);
+    printf("a >= b = %d\n", a >= b);
+    printf("a <= b = %d\n", a <= b);
+
+    // Logical Operators
+    printf("(a > 5 && b < 5) = %d\n", (a > 5 && b < 5));
+    printf("(a > 5 || b > 5) = %d\n", (a > 5 || b > 5));
+    printf("!(a == b) = %d\n", !(a == b));
+
+
+    // Assignment Operator
+    x += 3;
+    printf("x += 3 -> x = %d\n", x);
+
+    return 0;
+}
+// Output
+// a + b = 13
+// a - b = 7
+// a * b = 30
+// a / b = 3
+// a == b = 0
+// a != b = 1
+// a > b = 1
+// a < b = 0
+// a >= b = 1
+// a <= b = 0
+// (a > 5 && b < 5) = 1
+// (a > 5 || b > 5) = 1
+// !(a == b) = 1
+// x += 3 -> x = 8
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
