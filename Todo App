@@ -1,0 +1,142 @@
+#include <stdio.h>
+
+/* --- 1. SETUP --- */
+
+typedef struct {
+    char description[50]; 
+    int is_done;          // 0 = not done, 1 = done
+} Task;
+
+Task todo_list[10]; 
+int task_count = 0; 
+
+/* --- 2. FUNCTION PROTOTYPES --- */
+void show_menu();
+void add_task();
+void view_tasks();
+void mark_task_complete(); // <-- NEW FUNCTION
+
+/* --- 3. MAIN PROGRAM --- */
+int main() {
+    int choice;
+
+    do {
+        show_menu();
+        
+        printf("Enter your choice (1-4): "); // <-- CHANGED
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                add_task(); 
+                break;
+            case 2:
+                view_tasks(); 
+                break;
+            case 3:
+                mark_task_complete(); // <-- NEW OPTION
+                break;
+            case 4:
+                printf("\nGoodbye!\n"); // <-- CHANGED (now 4)
+                break;
+            default:
+                printf("\nInvalid choice. Please try again.\n");
+        }
+
+    } while (choice != 4); // <-- CHANGED (now 4)
+
+    return 0;
+}
+
+/* --- 4. FUNCTION DEFINITIONS --- */
+
+/**
+ * @brief  Prints the menu.
+ */
+void show_menu() {
+    printf("\n--- My To-Do App ---\n");
+    printf("1. Add a new task\n");
+    printf("2. View all tasks\n");
+    printf("3. Mark task as complete\n"); // <-- NEW OPTION
+    printf("4. Exit\n");                   // <-- CHANGED
+    printf("---------------------\n");
+}
+
+/**
+ * @brief  Adds one task to the list.
+ */
+void add_task() {
+    if (task_count >= 10) {
+        printf("\nSorry, the task list is full!\n");
+    } else {
+        printf("\nEnter the task word: ");
+        scanf("%s", todo_list[task_count].description); 
+        
+        todo_list[task_count].is_done = 0; // Set as "not done"
+        task_count++; 
+        
+        printf("Task added!\n");
+    }
+}
+
+/**
+ * @brief  Shows all the tasks currently in the list.
+ */
+void view_tasks() {
+    printf("\n--- Your Tasks ---\n");
+
+    if (task_count == 0) {
+        printf("Your list is empty. Add a task first!\n");
+    } else {
+        for (int i = 0; i < task_count; i++) {
+            // <-- ENTIRELY CHANGED (to show [X])
+            
+            // Use a variable 'status' to hold 'X' or ' '
+            char status_char;
+            if (todo_list[i].is_done == 1) {
+                status_char = 'X'; // 'X' for done
+            } else {
+                status_char = ' '; // ' ' for not done
+            }
+            
+            // Print with the correct status
+            printf("%d. [%c] %s\n", i + 1, status_char, todo_list[i].description);
+        }
+    }
+    printf("------------------\n");
+}
+
+
+/**
+ * @brief  Marks an existing task as completed. (NEW FUNCTION)
+ */
+void mark_task_complete() {
+    int task_number;
+
+    // First, check if there are any tasks at all
+    if (task_count == 0) {
+        printf("\nList is empty, nothing to mark.\n");
+        return; // Exit the function early
+    }
+
+    // Show the user the tasks so they can pick one
+    view_tasks();
+    
+    printf("\nEnter the task number to mark as complete: ");
+    scanf("%d", &task_number);
+
+    // --- This 'if' block validates the user's input ---
+    // Check 1: Is the number too small (less than 1)?
+    // Check 2: Is the number too big (more than we have)?
+    if (task_number < 1 || task_number > task_count) {
+        printf("\nInvalid task number.\n");
+    } else {
+        // Input is valid!
+        // We use (task_number - 1) because arrays start at 0
+        // User's "1" is our array index [0]
+        
+        todo_list[task_number - 1].is_done = 1;
+        
+        printf("\nTask %d marked as complete!\n", task_number);
+    }
+}
